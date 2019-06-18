@@ -1,0 +1,15 @@
+script(type='text/javascript').
+	document.getElementById('putmethod').addEventListener('submit', putTask)
+	function putTask() {
+		let task = document.getElementById('task').value;
+		let csrf = document.getElementById('csrf').value
+		fetch(`/update/#{task[0]._id}`, {
+			method: "PUT",
+			headers: {
+				'CSRF-Token': csrf,
+				'Content-Type':'application/json'
+				},
+			body: JSON.stringify({task:task})
+			})
+		.then((res) => location.href='/')
+	}

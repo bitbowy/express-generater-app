@@ -1,0 +1,9 @@
+script(type='text/javascript').
+	function destroy(arg){
+		let result = confirm("Are you sure to delete")
+		if(!result) return
+		fetch('/destroy/' + arg.value, {
+		  method: "DELETE",
+		  headers:{'Content-Type': 'application/json'}
+		}).then((res) => location.href='/')
+	}

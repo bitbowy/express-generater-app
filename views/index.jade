@@ -1,0 +1,18 @@
+extends layout
+block content
+	h1= title
+	p Welcome to #{title}
+	h2='New Task'
+	form(action='/add' method='post')
+		input(type='text' name='task' placeholder='NewTask' required)
+		br
+		input(type='submit' value='Add Task')
+		h2='Current Task'
+		input(type='hidden' name='_csrf' value=csrfToken)
+	ol
+		each item, index in todos
+			li #{item.task}: Time: #{item.in_date.getHours()}:#{item.in_date.getMinutes()}
+			a(href='/edit/'+item._id) Edit</a>    	  
+			button(value=item._id onclick="destroy(this)") Del
+	include indexJs.jade
+

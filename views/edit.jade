@@ -1,0 +1,9 @@
+extends layout
+block content
+	h1= title
+	form#putmethod
+		input#task(type='text' name='task' value=task[0].task required)
+		br
+		input(type='submit' value='ReNewTask')
+		input#csrf(type='hidden' name='_csrf' value=csrfToken)
+	include editJs.jade
